@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+  <title>Editar - Gonzales Paz Orlando Alonso</title>
+</head>
+<body>
+
+<h1 th:text="'Editar a visitas : ' + ${visitas.id}"></h1>
+
+<div class="container">
+  <form th:action="@{/visitas/editar(id=${visitas.id})}" method="post" th:object="${visitas}">
+    <div class="mb-3">
+      <label for="local" class="form-label">Local:</label>
+      <input type="text" class="form-control" id="local" name="local" th:value="${visitas.local}">
+    </div>
+    <div class="mb-3">
+      <label for="dni" class="form-label">DNI:</label>
+      <input type="text" class="form-control" id="dni" name="dni" th:value="${visitas.dni}">
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+</div>
+
+</body>
+</html>

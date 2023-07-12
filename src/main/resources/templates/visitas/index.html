@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Fira+Sans+Extra+Condensed:wght@400;500&family=Jost:wght@200;400;700;900&family=PT+Serif:wght@400;700&family=Quicksand:wght@300;500;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Listado de Visitas - Gonzales Paz Orlando Alonso</h1>
+
+<div class="ingresar">
+    <form class="head" th:action="@{/visitas}" method="post" th:object="${visitas}">
+
+        <label for="local">Local:</label>
+        <input type="text" id="local" name="local" />
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" />
+
+        <input class="btnGuardar" type="submit" value="Guardar">
+    </form>
+</div>
+
+<div class="table-container">
+    <table class="table" th:if="${visitas}">
+        <tr>
+            <th>ID</th>
+            <th>Local</th>
+            <th>DNI</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+
+        <tr th:each="visita : ${visitas}">
+            <td th:text="${visita.id}"></td>
+            <td th:text="${visita.local}"></td>
+            <td th:text="${visita.dni}"></td>
+            <td th:text="${visita.fecha}"></td>
+            <td th:text="${visita.hora}"></td>
+            <td>
+                <div class="btn-group btn-group-sm">
+                    <a th:href="@{/visitas/editar(id=${visita.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <form th:action="@{/visitas/eliminar(id=${visita.id})}" th:method="delete" class="btn">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
